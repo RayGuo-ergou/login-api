@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <!--username and password input  -->
+        <input type="text" id="username" placeholder="username" />
+        <input type="password" id="password" placeholder="password" />
+        <button onclick="loginFun()">login</button>
+        <button onclick="checkFun()">check</button>
+    </body>
+    <script>
+        let loginFun = () => {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            axios
+                .post('http://localhost:3001/login', {
+                    username: username,
+                    password: password,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        let checkFun = () => {
+            axios
+                .get('http://localhost:3001/user')
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+    </script>
+</html>
